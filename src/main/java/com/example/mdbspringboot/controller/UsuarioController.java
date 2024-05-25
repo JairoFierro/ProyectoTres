@@ -34,7 +34,7 @@ public class UsuarioController {
     @PostMapping("/usuarios/new/save")
     public String clientesSave(@ModelAttribute Usuario cliente, Model model) {
 
-        usuarioRepository.save(cliente) ;
+        usuarioRepository.save(cliente);
 
         return "redirect:/";
     }

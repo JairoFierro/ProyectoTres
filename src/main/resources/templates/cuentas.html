@@ -39,14 +39,13 @@
                 <td th:text="${cuenta.estado}"></td>
                 <td th:text="${cuenta.saldo}"></td>
                 <td th:text="${cuenta.tipo}"></td>
-                <td th:text="${nombre}"></td>
+                <td th:text="${usuario.nombre}"></td>
                 <td th:text="${cuenta.ultima_transaccion}"></td>
                 <td th:text="${cuenta.gerente_oficina}"></td>
                 <td th:text="${cuenta.fecha_creacion}"></td>
 
                 <td>
-                  <a th:href="@{cuentas/{id}/edit(id=${cuenta.id})}">Editar</a>
-                  <a th:href="@{cuentas/{id}/delete(id=${cuenta.id})}" onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
+                  <a th:href="@{/cuentas/{id_usuario}/edit/{id_cuenta}(id_usuario=${usuario.id},id_cuenta=${cuenta.id})}">Editar</a>
                 </td>
               </tr>
             </th:block>

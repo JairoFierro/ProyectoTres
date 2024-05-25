@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Cuenta</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+
+</head>
+<body>
+</br>
+
+<form th:action="@{'/cuentas/' + ${id_usuario} + '/edit/'+ ${id_cuenta} + '/save'}" th:object="${cuenta}" method="post">
+    <div th:replace="~{fragments/cuentaEditForm :: cuentaEditForm(titulo='Cambiar estado de cuenta', cuenta=${cuenta})}">
+    </div>
+</form>
+
+</body>
+</html>
