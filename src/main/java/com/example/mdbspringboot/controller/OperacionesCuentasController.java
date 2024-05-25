@@ -9,23 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.mdbspringboot.modelo.Cuenta;
+import com.example.mdbspringboot.modelo.OperacionCuenta;
+import com.example.mdbspringboot.repositorios.CuentaRepository;
+import com.example.mdbspringboot.repositorios.OperacionCuentaRepository;
 
 import java.sql.Date;
 import java.util.Optional;
 
 @Controller
 public class OperacionesCuentasController {
-  // @Autowired
-  // private OperacionCuentaRepository operacionCuentaRepository;
+  @Autowired
+  private OperacionCuentaRepository operacionCuentaRepository;
 
-  // @Autowired
-  // private OperacionesCuentasServicio operacionesCuentasServicio;
 
-  // @Autowired
-  // private CuentaRepository cuentaRepository;
+  @Autowired
+  private CuentaRepository cuentaRepository;
 
-  // @GetMapping("/operacionesCuentas")
-  // public String operaciones_cuentas(Model model, Integer numero_cuenta ,Integer numero_cuentaCm) {
+  @GetMapping("/operacionesCuentas")
+  public String operaciones_cuentas(Model model, Integer numero_cuenta ,Integer numero_cuentaCm) {
   //   Date fecha = new Date(System.currentTimeMillis());
   //   int retryCount = 0;
   //   while (true) {
@@ -46,11 +48,81 @@ public class OperacionesCuentasController {
   //         System.out.println("Intento " + (retryCount + 1) + ": " + e);
   //     }
   // }
-  // return "operacionesCuentas";
+  return "operacionesCuentas";
 
+  }
+
+  @GetMapping("/operacionesCuentas/new")
+  public String operacionesCuentasForm(Model model) {
+    model.addAttribute("operacionCuenta", new OperacionCuenta());
+    return "operacionesCuentasNew";
+  }
+
+  @PostMapping("/operacionesCuentas/new/save")
+  public String operacionesCuentasSave(@ModelAttribute OperacionCuenta operacionCuenta, RedirectAttributes redirectAttributes) {
+    //Cuenta cuentaLlegada=cuentaRepository.darCuenta(operacionCuenta.getCuenta_llegada());
+    // Cuenta cuentaSalida=cuentaRepository.darCuenta(operacionCuenta.getCuenta_salida());
+    
+    // if(operacionCuenta.getTipo_operacion().equals("Consignacion")){
+    //     //ACA SOLO SE MODIFICA CUENTA LLEGADA
+    //     try {
+    //       Float valorOperacion=operacionCuenta.getMonto_operacion();
+    //       Float saldo=cuentaSalida.getSaldo();
+    //       operacionesCuentasServicio.operacionConsignacion(cuentaSalida,valorOperacion,saldo);
+    //     } 
+    //     catch (InterruptedException e) {
+    //       System.err.println("Error : " + e.getMessage());
+    //       redirectAttributes.addFlashAttribute("errorMessage", "error");
+    //       return "redirect:/operacionesCuentas";
+    //       }
+    // }
+    // if (operacionCuenta.getTipo_operacion().equals("Retiro") ){
+    //   try {
+    //     Float valorOperacion=operacionCuenta.getMonto_operacion();
+    //     Float saldo=cuentaSalida.getSaldo();
+    //     operacionesCuentasServicio.operacionRetiro(cuentaSalida, valorOperacion,saldo);
+    //   } 
+    //   catch (InterruptedException e) {
+    //     System.err.println("Error : " + e.getMessage());
+    //     redirectAttributes.addFlashAttribute("errorMessage", "error");
+    //     return "redirect:/operacionesCuentas";
+    //     }
+    // }
+
+    // if (operacionCuenta.getTipo_operacion().equals("Transferencia") ){
+    //   try {
+    //     operacionesCuentasServicio.operacionTransferencia(operacionCuenta,cuentaSalida);
+
+    //   } 
+    //   catch (InterruptedException e) {
+    //     System.err.println("Error : " + e.getMessage());
+    //     redirectAttributes.addFlashAttribute("errorMessage", "error");
+    //     return "redirect:/operacionesCuentas";
+    //     }
+
+    // }
+    
+    // operacionCuentaRepository.insertarOperacioneCuenta(operacionCuenta.getTipo_operacion(), operacionCuenta.getFecha(),
+    //     operacionCuenta.getCuenta_salida(), operacionCuenta.getMonto_operacion(), operacionCuenta.getCliente(),
+    //     operacionCuenta.getPunto_atencion().getId(), operacionCuenta.getCuenta_llegada());
+    return "redirect:/operacionesCuentas";
+  }
+
+  // @GetMapping("/operacionesCuentas/{id}/edit")
+  // public String operacionesCuentasEditForm(@PathVariable("id") int id, Model model) {
+  //   OperacionCuenta operacionCuenta = operacionCuentaRepository.darOperacioneCuenta(id);
+  //   if (operacionCuenta != null) {
+  //     model.addAttribute("operacionesCuentas", operacionCuenta);
+  //     return "operacionesCuentas";
+  //   } else {
+  //     return "redirect:/operacionesCuentas";
+  //   }
   // }
 
+
   
+
+
   // @GetMapping("/ConsultaOpCuentasSe")
   // public String consultaOpCuentasSe(Model model) {
   //   return "ConsultaOpCuentasSe";
@@ -67,11 +139,6 @@ public class OperacionesCuentasController {
   //   return "operacionCuentaCajero";
   // }
 
-  // @GetMapping("/operacionesCuentas/new")
-  // public String operaciones_cuentasForm(Model model) {
-  //   model.addAttribute("operacionCuenta", new OperacionCuenta());
-  //   return "operacionesCuentasNew";
-  // }
 
   // @GetMapping("/operacionesCuentasCajero/new")
   // public String operaciones_cuentasCajeroForm(Model model) {

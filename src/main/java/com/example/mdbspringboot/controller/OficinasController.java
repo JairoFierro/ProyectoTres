@@ -5,34 +5,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.mdbspringboot.modelo.Oficina;
+import com.example.mdbspringboot.repositorios.OficinaRepository;
 
 
 
 @Controller
 public class OficinasController {
-  // @Autowired
-  // private OficinaRepository oficinaRepository;
+  @Autowired
+  private OficinaRepository oficinaRepository;
 
-  // @GetMapping("/oficinas")
-  // public String oficinas(Model model) {
-  //   model.addAttribute("oficinas", oficinaRepository.darOficinas());
-  //   return "oficinas";
-  // }
+  @GetMapping("/oficinas")
+  public String oficinas(Model model) {
+    model.addAttribute("oficinas", oficinaRepository.findAll());
+    return "oficinas";
+  }
 
-  // @GetMapping("/oficinas/new")
-  // public String oficinasForm(Model model) {
-  //   model.addAttribute("oficina", new Oficina());
-  //   return "oficinaNew";
-  // }
+  @GetMapping("/oficinas/new")
+  public String oficinasForm(Model model) {
+    model.addAttribute("oficina", new Oficina());
+    return "oficinaNew";
+  }
 
-  // @PostMapping("/oficinas/new/save")
-  // public String oficinassSave(@ModelAttribute Oficina oficina) {
-  //   oficinaRepository.insertarOficina(oficina.getNombre(), oficina.getDireccion(), oficina.getNumero_puntos_atencion(),
-  //       oficina.getGerente(), oficina.getCiudad());
-  //   return "redirect:/oficinas";
-  // }
+  @PostMapping("/oficinas/new/save")
+  public String oficinassSave(@ModelAttribute Oficina oficina) {
+    oficinaRepository.save(oficina);
+    return "redirect:/oficinas";
+  }
 
   // @GetMapping("/oficinas/{id}/edit")
   // public String oficinasEditForm(@PathVariable("id") int id, Model model) {

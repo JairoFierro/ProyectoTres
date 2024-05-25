@@ -1,12 +1,16 @@
 package com.example.mdbspringboot.repositorios;
 import com.example.mdbspringboot.modelo.Cuenta;
 
+import java.util.Date;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.Update;
 
 
 public interface CuentaRepository extends MongoRepository<Cuenta, Integer> {
     
+
     // @Query(value = "SELECT * FROM cuentas", nativeQuery = true)
     // Collection<Cuenta> darCuentas();
 

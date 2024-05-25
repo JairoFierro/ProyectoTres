@@ -12,14 +12,14 @@ import lombok.ToString;
 public class Cuenta {
 
     @Id
-    private Integer id;
+    private int id;
 
     private String numero_cuenta;
     private String estado;
     private Float saldo;
     private String tipo;
     private Date ultima_transaccion;
-    private Integer gerente_oficina_creador;
+    private int gerente_oficina;
     private Date fecha_creacion;
     private List<OperacionCuenta> operaciones_cuenta;
 
@@ -27,24 +27,23 @@ public class Cuenta {
         ;
     }
 
-    public Cuenta(Integer id, String numero_cuenta, String estado, Float saldo, String tipo, Date ultima_transaccion,
-            Integer gerente_oficina_creador, Date fecha_creacion, List<OperacionCuenta> operaciones_cuenta) {
+    public Cuenta(int id, String numero_cuenta, String estado, Float saldo, String tipo, Date ultima_transaccion,
+                 int gerente_oficina, Date fecha_creacion) {
         this.id = id;
         this.numero_cuenta = numero_cuenta;
         this.estado = estado;
         this.saldo = saldo;
         this.tipo = tipo;
         this.ultima_transaccion = ultima_transaccion;
-        this.gerente_oficina_creador = gerente_oficina_creador;
+        this.gerente_oficina = gerente_oficina;
         this.fecha_creacion = fecha_creacion;
-        this.operaciones_cuenta = operaciones_cuenta;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -88,12 +87,12 @@ public class Cuenta {
         this.ultima_transaccion = ultima_transaccion;
     }
 
-    public Integer getGerente_oficina_creador() {
-        return gerente_oficina_creador;
+    public int getGerente_oficina() {
+        return gerente_oficina;
     }
 
-    public void setGerente_oficina_creador(Integer gerente_oficina_creador) {
-        this.gerente_oficina_creador = gerente_oficina_creador;
+    public void setGerente_oficina(int gerente_oficina) {
+        this.gerente_oficina = gerente_oficina;
     }
 
     public Date getFecha_creacion() {

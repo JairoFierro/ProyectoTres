@@ -2,16 +2,21 @@ package com.example.mdbspringboot.repositorios;
 
 
 import java.sql.Timestamp;
-
+import java.util.Date;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.Update;
 
 import com.example.mdbspringboot.modelo.Usuario;
 
 
 
 public interface UsuarioRepository extends MongoRepository<Usuario, Integer> {
+
+      @Query("{_id: ?0}")
+      @Update("{$push:{cuentas:{_id:?1, numero_cuenta:?2, estado:?3, saldo:?4, tipo:?5, ultima_transaccion:?6, gerente_oficina:?7, fecha_creacion:?8 }}}")
+      void aniadirCuentaAUsuario(int cliente, int id, String numero_cuenta, String estado, Float saldo, String tipo, Date ultima_transaccion, int gerente_oficina, Date fecha_creacion);
 
       public interface RespuestaExtracto {
 

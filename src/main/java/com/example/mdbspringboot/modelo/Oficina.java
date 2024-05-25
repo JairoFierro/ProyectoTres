@@ -1,11 +1,13 @@
 package com.example.mdbspringboot.modelo;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.ToString;
 
-@Document(collection="cuentas")
+@Document(collection="oficinas")
 @ToString
 public class Oficina {
 
@@ -21,6 +23,9 @@ public class Oficina {
   private Integer gerente;
 
   private String ciudad;
+
+  private List<Integer> puntos_atencion;
+
 
 
   public Oficina() {

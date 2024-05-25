@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.ToString;
 
-@Document(collection="puntosAtencion")
+@Document(collection="puntos_atencion")
 @ToString
 public class PuntoAtencion {
   @Id
@@ -19,26 +19,16 @@ public class PuntoAtencion {
 
   private String direccion;
 
-  private Integer oficina;
 
   public PuntoAtencion() {
     ;
   }
 
-  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion, Integer oficina) {
+  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion) {
     this.tipo = tipo;
     this.ciudad = ciudad;
     this.horario_atencion = horario_atencion;
     this.direccion = direccion;
-    this.oficina = oficina;
-  }
-
-  public Integer getOficina() {
-    return oficina;
-  }
-
-  public void setOficina(Integer oficina) {
-    this.oficina = oficina;
   }
 
   public Integer getId() {
