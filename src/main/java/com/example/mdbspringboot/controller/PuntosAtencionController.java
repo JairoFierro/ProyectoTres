@@ -13,20 +13,20 @@ import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
 
 @Controller
 public class PuntosAtencionController {
-  // @Autowired
-  // private PuntoAtencionRepository puntoAtencionRepository;
+   @Autowired
+   private PuntoAtencionRepository puntoAtencionRepository;
 
-  // @GetMapping("/puntosAtencion")
-  // public String puntosAtencion(Model model) {
-  //   model.addAttribute("puntosAtencion", puntoAtencionRepository.darPuntosAtencion());
-  //   return "puntosAtencion";
-  // }
+   @GetMapping("/puntosAtencion")
+   public String puntosAtencion(Model model) {
+    model.addAttribute("puntosAtencion", puntoAtencionRepository.findAll());
+     return "puntosAtencion";
+   }
 
-  // @GetMapping("/puntosAtencion/new")
-  // public String puntosAtencionForm(Model model) {
-  //   model.addAttribute("puntoAtencion", new PuntoAtencion());
-  //   return "puntosAtencionNew";
-  // }
+   @GetMapping("/puntosAtencion/new")
+   public String puntosAtencionForm(Model model) {
+     model.addAttribute("puntoAtencion", new PuntoAtencion());
+     return "puntosAtencionNew";
+   }
 
   // @PostMapping("/puntosAtencion/new/save")
   // public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragmento</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    </br>
+    <div th:fragment="puntoAtencionForm(titulo)" class="container border border-2 w-25">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+
+    <form>
+        <label class="col-form-label">Tipo:</label>
+        <select class="form-control"  id="tipo" name="tipo" required>
+            <option value="Perzonalizado" th:selected="${puntoAtencion.tipo eq 'Perzonalizado'}">Personalizado</option>
+            <option value="CajeroAutomatico" th:selected="${puntoAtencion.tipo eq 'CajeroAutomatico'}">Cajero automatico</option>
+            <option value="App" th:selected="${puntoAtencion.tipo eq 'App'}">App</option>
+            <option value="Web" th:selected="${puntoAtencion.tipo eq 'Web'}">Web</option>
+        </select>
+
+        <label class="col-form-label">Ciudad:</label>
+        <input class="form-control" type="text" id="ciudad" name="ciudad" th:value="${puntoAtencion.ciudad}" />
+        <label class="col-form-label">Horario atencion:</label>
+        <input class="form-control" type="text" id="horario_atencion" name="horario_atencion" th:value="${puntoAtencion.horario_atencion}" />
+        <label class="col-form-label">Dirección:</label>
+        <input class="form-control" type="text" id="direccion" name="direccion" th:value="${puntoAtencion.direccion}" />
+        <label class="col-form-label">Oficina(si no tiene escribir null):</label>
+        <input class="form-control" type="number" id="oficina" name="oficina" th:value="${puntoAtencion.oficina}" />
+
+        <div class="text-center">
+            <input type="submit" value="Guardar" class="btn btn-primary">
+            <a th:href="@{/puntosAtencion}" class="btn btn-primary">Cancelar</a>
+        </div>
+    </form>
+    
+</body>
+</html>
