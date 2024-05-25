@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fragmento</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    </br>
+    <div th:fragment="usuarioForm(titulo)" class="container border border-2 w-25">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+
+    <form>
+        <div class="form-row"> 
+
+        <label class="col-form-label">Id:</label>
+        <input class="form-control" type="text" id="id" name="id" required th:value="${usuario.id}" />
+
+        <label class="col-form-label">Login:</label>
+        <input class="form-control" type="text" id="login" name="login" required th:value="${usuario.login}" />
+
+        <label class="col-form-label">Password:</label>
+        <input class="form-control" type="text" id="password" name="password" required th:value="${usuario.password}" />
+
+
+        <label class="col-form-label">Tipo de persona:</label>
+        <select class="form-control"  id="tipo_persona" name="tipo_persona" required>
+            <option value="Juridica" th:selected="${usuario.tipo_persona eq 'Juridica'}">Juridica</option>
+            <option value="Natural" th:selected="${usuario.tipo_persona eq 'Natural'}">Natural</option>
+            <option value="NoAplica" th:selected="${usuario.tipo_persona eq 'NoAplica'}">No aplica</option>
+        </select>
+
+        <label class="col-form-label">Tipo documento:</label>
+        <input class="form-control" type="text" id="tipo_documento" name="tipo_documento" required th:value="${usuario.tipo_documento}" />
+
+        <label class="col-form-label">Numero documento:</label>
+        <input class="form-control" type="text" id="numero_documento" name="numero_documento" required th:value="${usuario.numero_documento}" />
+        
+        </div>
+
+        <div class="form-row">
+        <label class="col-form-label">Nombre:</label>
+        <input class="form-control" type="text" id="nombre" name="nombre" required th:value="${usuario.nombre}" />
+
+        <label class="col-form-label">Nacionalidad::</label>
+        <input class="form-control" type="text" id="nacionalidad" name="nacionalidad" required th:value="${usuario.nacionalidad}" />
+
+        <label class="col-form-label">Direccion electronica:</label>
+        <input class="form-control" type="text" id="direccion_electronica" name="direccion_electronica" required th:value="${usuario.direccion_electronica}" />
+
+        <label class="col-form-label">Dirección física:</label>
+        <input class="form-control" type="text" id="direccion_fisica" name="direccion_fisica" required th:value="${usuario.direccion_fisica}" />
+
+        </div>
+
+        <div class="form-row">
+
+
+        <label class="col-form-label">Telefono:</label>
+        <input class="form-control" type="text" id="telefono" name="telefono" required th:value="${usuario.telefono}" />
+
+        <label class="col-form-label">Código postal:</label>
+        <input class="form-control" type="text" id="codigo_postal" name="codigo_postal" required th:value="${usuario.codigo_postal}" />
+
+        <label class="col-form-label">Ciudad:</label>
+        <input class="form-control" type="text" id="ciudad" name="ciudad" required th:value="${usuario.ciudad}" />
+
+        <label class="col-form-label">Departemento:</label>
+        <input class="form-control" type="text" id="departamento" name="departamento" required th:value="${usuario.departamento}" />
+
+        </div>
+
+        <label class="col-form-label">Tipo usuario:</label>
+        <select class="form-control"  id="tipo_usuario" name="tipo_usuario" required>
+            <option value="Cliente" th:selected="${usuario.tipo_usuario eq 'Cliente'}">Cliente</option>
+            <option value="Empleado" th:selected="${usuario.tipo_usuario eq 'Empleado'}">Empleado</option>
+        </select>
+
+
+        <div class="text-center" style="margin-top: 10px;" >
+            <input type="submit" value="Guardar" class="btn btn-primary">
+            <a th:href="@{/}" class="btn btn-primary">Cancelar</a>
+        </div>
+    </form>
+    
+</body>
+</html>
