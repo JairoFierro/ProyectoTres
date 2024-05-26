@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>No se puede</title>
+    <title>Consulta</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -15,28 +15,32 @@
             <div class="1-col" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">Banco de los Andes</div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-left: 200px;">
         <br>
         <br>
 
-    </div>
-    
-    <div class="row" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">
-        <br>
-    <h1>NO SE PUEDE REALIZAR ESTA ACCION</h1>
-        <br>
-        <br>
-
+        <div class="col-12" style="margin-left: -70px; margin-top: 5px;">
+            <form action="#" th:action="@{/consultaUno}" method="get">
+                <div th:replace="~{fragments/infoCuentasForm :: infoCuentasForm(titulo='Consultar cuentas')}"></div>
+            </form>
+        </div>
     </div>
 
-    <div class="row" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">
-        <div class="1-col" style="margin-left: 325px;"> 
-            <a th:href='@{/}' class="btn btn-primary" style="margin-left: 20px; font-size: 20px; font-family: 'Aptos Black';">Volver</a>
+
+    <div class="row" style="margin-left: 200px;">
+        <br>
+        <br>
+        <div class="col-12" style="margin-left: -70px; margin-top: 20px;">
+            <form action="#" th:action="@{/consultaDos}" method="get">
+                <div th:replace="~{fragments/extractoBancarioForm :: extractoBancarioForm(titulo='Consultar extracto bancario')}"></div>
+            </form>
         </div>
 
     </div>
 
     </div>
+
+
     
 </body>
 </html>

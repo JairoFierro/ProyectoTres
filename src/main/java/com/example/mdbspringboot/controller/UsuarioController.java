@@ -18,6 +18,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @GetMapping("/consultas")
+    public String consultaDos(Model model) {
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+        return "consultas";
+    }
+
+    @GetMapping("/consultaUno")
+    public String consultaUno(Model model) {
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+        return "consultaUno";
+    }
+
+    @GetMapping("/consultaUno/new")
+    public String consultaUnoForm(Model model) {
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+        return "consultaUno";
+    }
+
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.findAll());
