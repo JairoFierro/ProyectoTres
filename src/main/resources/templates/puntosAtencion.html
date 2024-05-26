@@ -18,23 +18,22 @@
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Puntos Atencion</th>
-                    <th>Gerente</th>
+                    <th>Tipo</th>
                     <th>Ciudad</th>
+                    <th>Horario Atencion</th>
+                    <th>Direccion</th>
                 </tr>
             </thead>
-            <th:block th:each="oficina : ${oficinas}">
-                <th:block th:each="punto_atencion : ${oficina.puntos_atencion}">                
+            <th:block th:each="punto : ${puntosAtencion}">
                     <tr>
-                    <td th:text="${punto_atencion.id}"></td>
-                    <td th:text="${punto_atencion.tipo}"></td>
-                    <td th:text="${punto_atencion.ciudad}"></td>
-                    <td th:text="${punto_atencion.direccion}"></td>
+                    <td th:text="${punto.id}"></td>
+                    <td th:text="${punto.tipo}"></td>
+                    <td th:text="${punto.ciudad}"></td>
+                    <td th:text="${punto.horario_atencion}"></td>
+                    <td th:text="${punto.direccion}"></td>
                     <td>
-                        <a th:href="@{oficinas/{id}/edit(id=${oficina.id})}">Editar</a>
-                        <a th:href="@{oficinas/{id}/delete(id=${oficina.id})}"
+                        <a th:href="@{puntosAtencion/{id}/edit(id=${puntosAtencion.id})}">Editar</a>
+                        <a th:href="@{puntosAtencion/{id}/delete(id=${puntosAtencion.id})}"
                             onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
                     </td>
                     </tr>
@@ -47,7 +46,7 @@
         </div>
 
         <div>
-            <a th:href='@{oficinas/new}' class="btn btn-primary">Añadir oficina</a>
+            <a th:href='@{puntosAtencion/new}' class="btn btn-primary">Añadir Punto de Atencion</a>
             <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
           </div>
         <br />

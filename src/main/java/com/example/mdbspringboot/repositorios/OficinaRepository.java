@@ -19,9 +19,9 @@ import com.example.mdbspringboot.modelo.Usuario;
 
 public interface OficinaRepository extends MongoRepository<Oficina, Integer> {
 
-  @Query("{_id: ?0}")
-  @Update("{$push:{oficinas:{_id:?1, tipo:?2, ciudad:?3, horario_atencion:?4, direccion:?5 }}}")
-  void aniadirPuntoAtencionOficina(int oficina, int id, String tipo, String ciudad, String horario_atencion, String direccion);
+  //@Query("{_id: ?0}")
+  //@Update("{$push:{oficinas:{_id:?1, tipo:?2, ciudad:?3, horario_atencion:?4, direccion:?5 }}}")
+  //void aniadirPuntoAtencionOficina(int oficina, int id, String tipo, String ciudad, String horario_atencion, String direccion);
 
 
 

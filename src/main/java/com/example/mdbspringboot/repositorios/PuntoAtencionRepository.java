@@ -10,6 +10,7 @@ import com.example.mdbspringboot.modelo.PuntoAtencion;
 
 public interface PuntoAtencionRepository extends MongoRepository<PuntoAtencion, Integer>{
 
+    
     // @Query(value = "SELECT * FROM puntos_atencion", nativeQuery = true)
     // Collection<PuntoAtencion> darPuntosAtencion();
 
