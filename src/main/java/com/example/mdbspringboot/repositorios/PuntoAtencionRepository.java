@@ -4,15 +4,15 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.example.mdbspringboot.modelo.PuntoAtencion;
 
-// import org.springframework.data.jpa.repository.Modifying;
-// import org.springframework.data.jpa.repository.Query;
-// import org.springframework.data.repository.query.Param;
-// import jakarta.transaction.Transactional;
+
 
 public interface PuntoAtencionRepository extends MongoRepository<PuntoAtencion, Integer>{
+    @Query(value="{_id:?0}", delete=true)
+    void eliminaPuntoAtencion(long id);
 
     @Query("{'_id': ?0}")
     PuntoAtencion encontrarPuntoAtencionPorId(int id);
+
 
     // @Query(value = "SELECT * FROM puntos_atencion", nativeQuery = true)
     // Collection<PuntoAtencion> darPuntosAtencion();

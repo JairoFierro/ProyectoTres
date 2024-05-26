@@ -19,16 +19,27 @@ public class PuntoAtencion {
 
   private String direccion;
 
+  private String idOficina;
+
 
   public PuntoAtencion() {
     ;
   }
 
-  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion) {
+  public PuntoAtencion(String tipo, String ciudad, String horario_atencion, String direccion,String idOficina) {
     this.tipo = tipo;
     this.ciudad = ciudad;
     this.horario_atencion = horario_atencion;
     this.direccion = direccion;
+    this.idOficina=idOficina;
+  }
+
+  public void setIdOficina(String idOficina) {
+    this.idOficina = idOficina;
+  }
+
+  public String getIdOficina() {
+    return idOficina;
   }
 
   public Integer getId() {
