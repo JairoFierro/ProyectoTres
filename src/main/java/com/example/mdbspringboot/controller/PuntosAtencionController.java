@@ -1,5 +1,7 @@
 package com.example.mdbspringboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.mdbspringboot.modelo.Oficina;
 import com.example.mdbspringboot.modelo.PuntoAtencion;
 import com.example.mdbspringboot.repositorios.OficinaRepository;
 import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
@@ -40,9 +43,17 @@ public class PuntosAtencionController {
     int idOficina2;
     idOficina2 = Integer.parseInt(idOficina);
     int idPuntoAtencion=puntoAtencion.getId();
-
-    oficinaRepository.actualizarArray(idOficina2,idPuntoAtencion);
     puntoAtencionRepository.save(puntoAtencion);
+
+    List<Oficina> oficinas= oficinaRepository.buscarTodas();
+    for(Oficina oficina: oficinas){
+      if (oficina.getId()==idOficina2){
+        List<Integer> puntos= oficina.getPuntos_atencion();
+        puntos.add(idPuntoAtencion);
+        oficina.setPuntos_atencion(puntos);
+      }
+    }
+    oficinaRepository.saveAll(oficinas);
     return "redirect:/puntosAtencion";
   }
 
