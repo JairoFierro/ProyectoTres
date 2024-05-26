@@ -1,24 +1,27 @@
 package com.example.mdbspringboot.modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.ToString;
 
 @ToString
 public class OperacionCuenta {
     @Id
-    private Integer id;
+    private int id;
     
     private String tipo_operacion;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
     private Float monto_operacion;
-    private Integer cliente;
+    private int cliente;
 
-    private Integer cuenta_llegada;
+    private String cuenta_llegada;
 
-    private Integer punto_atencion;
+    private int punto_atencion;
 
     
     
@@ -28,7 +31,7 @@ public class OperacionCuenta {
 
 
     public OperacionCuenta(String tipo_operacion, Date fecha, Float monto_operacion,
-            Integer cliente, Integer punto_atencion, Integer cuenta_llegada) {
+            Integer cliente, Integer punto_atencion, String cuenta_llegada) {
         this.tipo_operacion = tipo_operacion;
         this.fecha = fecha;
         this.monto_operacion = monto_operacion;
@@ -98,12 +101,12 @@ public class OperacionCuenta {
     }
 
 
-    public Integer getCuenta_llegada() {
+    public String getCuenta_llegada() {
         return cuenta_llegada;
     }
 
 
-    public void setCuenta_llegada(Integer cuenta_llegada) {
+    public void setCuenta_llegada(String cuenta_llegada) {
         this.cuenta_llegada = cuenta_llegada;
     }
     

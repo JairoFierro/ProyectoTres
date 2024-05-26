@@ -40,13 +40,13 @@
         <input class="form-control" type="number" id="cliente" name="cliente" required th:value="${cliente}" />
         
         <label class="col-form-label">Ultima Transaccion:</label>
-        <input class="form-control" type="text" id="ultima_transaccion" name="ultima_transaccion" required th:value="${cuenta.ultima_transaccion}" />
+        <input class="form-control" type="date" id="ultima_transaccion" name="ultima_transaccion" required th:value="${cuenta.ultima_transaccion}" />
         <label class="col-form-label">Gerente Creador:</label>
         <input class="form-control" type="number" id="gerente_oficina" name="gerente_oficina" required th:value="${cuenta.gerente_oficina}" /> 
     
         <label class="col-form-label">Fecha creacion:</label>
-        <input class="form-control" type="text" id="fecha_creacion" name="fecha_creacion" required th:value="${cuenta.fecha_creacion}" />
-        
+        <input class="form-control" type="date" id="fecha_creacion" name="fecha_creacion" required th:value="${cuenta.fecha_creacion}" />
+
 
         <div class="text-center">
             <input type="submit" value="Guardar" class="btn btn-primary">

@@ -1,6 +1,7 @@
 package com.example.mdbspringboot.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class CuentasController {
 
     
     usuarioRepository.aniadirCuentaAUsuario(cliente, cuenta.getId(), cuenta.getNumero_cuenta(), cuenta.getEstado(), cuenta.getSaldo(), 
-                                          cuenta.getTipo(), cuenta.getUltima_transaccion(), cuenta.getGerente_oficina(), cuenta.getFecha_creacion());
+                                          cuenta.getTipo(), cuenta.getUltima_transaccion(), cuenta.getGerente_oficina(), cuenta.getFecha_creacion(), new ArrayList<>());
     return "redirect:/cuentas";
 
   }

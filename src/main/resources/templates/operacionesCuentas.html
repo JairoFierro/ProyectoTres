@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>operacion</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1>Lista de operaciones sobre cuentas</h1>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>id operacion</th>
+                    <th>tipo operacion</th>
+                    <th>fecha</th>
+                    <th>cuenta de salida</th>
+                    <th>monto operacion</th>
+                    <th>cliente</th>
+                    <th>punto de atencion</th>
+                    <th>cuenta de llegada</th>
+
+                </tr>
+            </thead> 
+
+            <th:block th:each="usuario : ${usuarios}">
+                <th:block th:each="cuenta : ${usuario.cuentas}">
+                    <th:block th:each="operacionesCuentas : ${cuenta.operaciones_cuenta}">
+                    <tr>
+                        <td th:text="${operacionesCuentas.id}"></td>
+                        <td th:text="${operacionesCuentas.tipo_operacion}"></td>
+                        <td th:text="${operacionesCuentas.fecha}"></td>
+                        <td th:text="${cuenta.id}"></td>
+                        <td th:text="${operacionesCuentas.monto_operacion}"></td>
+                        <td th:text="${operacionesCuentas.cliente}"></td>
+                        <td th:text="${operacionesCuentas.punto_atencion}"></td>
+                        <td th:text="${operacionesCuentas.cuenta_llegada}"></td>
+                        
+                    </tr>
+                    </th:block>
+                </th:block>
+            </th:block>
+
+        </table>
+
+        </div>
+
+        <div>
+            <a th:href='@{operacionesCuentas/new}' class="btn btn-primary">Añadir Operacion</a>
+            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+        </div>
+        <br />
+
+    </div>
+</body>
+
+</html>

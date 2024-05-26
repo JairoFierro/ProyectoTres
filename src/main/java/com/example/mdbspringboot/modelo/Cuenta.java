@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.ToString;
 
@@ -18,8 +19,12 @@ public class Cuenta {
     private String estado;
     private Float saldo;
     private String tipo;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ultima_transaccion;
     private int gerente_oficina;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_creacion;
     private List<OperacionCuenta> operaciones_cuenta;
 
@@ -28,7 +33,7 @@ public class Cuenta {
     }
 
     public Cuenta(int id, String numero_cuenta, String estado, Float saldo, String tipo, Date ultima_transaccion,
-                 int gerente_oficina, Date fecha_creacion) {
+                 int gerente_oficina, Date fecha_creacion,List<OperacionCuenta> operaciones_cuenta) {
         this.id = id;
         this.numero_cuenta = numero_cuenta;
         this.estado = estado;
@@ -37,6 +42,7 @@ public class Cuenta {
         this.ultima_transaccion = ultima_transaccion;
         this.gerente_oficina = gerente_oficina;
         this.fecha_creacion = fecha_creacion;
+        this.operaciones_cuenta = operaciones_cuenta;
     }
 
     public int getId() {
