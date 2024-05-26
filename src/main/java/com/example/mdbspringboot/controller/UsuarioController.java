@@ -1,6 +1,9 @@
 package com.example.mdbspringboot.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +102,68 @@ public class UsuarioController {
 
         return "consultaUno";
     }
+
+
+
+    @GetMapping("/consultaDos")
+    public String consultaDos(Model model, String numMes, String numCuenta) {
+        int numCuenta2 = Integer.parseInt(numCuenta);
+        String fecha1 = "2024-" + numMes + "-01";
+        String fecha2 = "2024-" + numMes + "-30"; 
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+    
+        Date fechaInicial;
+        Date fechaFinal;
+
+        try {
+            fechaInicial = formato.parse(fecha1);
+            fechaFinal = formato.parse(fecha2);
+        } catch (ParseException e) {
+            model.addAttribute("error", "Error en el formato de las fechas");
+            return "error"; // Vista de error, ajusta según tu configuración
+        }
+
+    
+        List<OperacionCuenta> operacionesConsignacion = new ArrayList<>();
+        List<OperacionCuenta> operacionesRetiro = new ArrayList<>();
+        List<OperacionCuenta> operacionesTransferencia = new ArrayList<>();
+    
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        for (Usuario usuario : usuarios) {
+            List<Cuenta> cuentas = usuario.getCuentas();
+            for (Cuenta cuenta : cuentas) {
+                if (cuenta.getId() == numCuenta2) {
+                    List<OperacionCuenta> operacionesCuenta = cuenta.getOperaciones_cuenta();
+                    for (OperacionCuenta operacionCuenta : operacionesCuenta) {
+                        Date fechaOperacion = operacionCuenta.getFecha();
+                        if (fechaOperacion.compareTo(fechaInicial) >= 0 && fechaOperacion.compareTo(fechaFinal) <= 0) {
+
+
+                            
+                            switch (operacionCuenta.getTipo_operacion()) {
+                                case "Consignacion":
+                                    operacionesConsignacion.add(operacionCuenta);
+                                    break;
+                                case "Retiro":
+                                    operacionesRetiro.add(operacionCuenta);
+                                    break;
+                                case "Transferencia":
+                                    operacionesTransferencia.add(operacionCuenta);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+        model.addAttribute("operacionesConsignacion", operacionesConsignacion);
+        model.addAttribute("operacionesRetiro", operacionesRetiro);
+        model.addAttribute("operacionesTransferencia", operacionesTransferencia);
+    
+        return "consultaDos"; // Vista donde se mostrarán los resultados
+    }
+
 
     @GetMapping("/consultaUno/new")
     public String consultaUnoForm(Model model) {

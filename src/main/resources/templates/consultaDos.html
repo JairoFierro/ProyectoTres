@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Extracto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h3>Tabla de consiganciones</h3>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo Operacion</th>
+                    <th>Fecha</th>
+                    <th>Monto operacion</th>
+                    <th>Cliente</th>
+                    <th>Cuenta llegada</th>
+                    <th>Punto atencion</th>
+                </tr>
+            </thead>
+
+            <th:block th:each="consignaciones : ${operacionesConsignacion}">
+                <tr>
+                    <td th:text="${consignaciones.id}"></td>
+                    <td th:text="${consignaciones.tipo_operacion}"></td>
+                    <td th:text="${consignaciones.fecha}"></td>
+                    <td th:text="${consignaciones.monto_operacion}"></td>
+                    <td th:text="${consignaciones.cliente}"></td>
+                    <td th:text="${consignaciones.cuenta_llegada}"></td>
+                    <td th:text="${consignaciones.punto_atencion}"></td>
+                </tr>
+            </th:block>
+        </table>
+        </div>
+
+        <h3>Tabla de retiros:</h3>
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                      <th>ID</th>
+                      <th>Tipo Operacion</th>
+                      <th>Fecha</th>
+                      <th>Monto operacion</th>
+                      <th>Cliente</th>
+                      <th>Cuenta llegada</th>
+                      <th>Punto atencion</th>
+                    </tr>
+                </thead>
+
+                <th:block th:each="consignaciones : ${operacionesRetiro}">
+                  <tr>
+                      <td th:text="${consignaciones.id}"></td>
+                      <td th:text="${consignaciones.tipo_operacion}"></td>
+                      <td th:text="${consignaciones.fecha}"></td>
+                      <td th:text="${consignaciones.monto_operacion}"></td>
+                      <td th:text="${consignaciones.cliente}"></td>
+                      <td th:text="${consignaciones.cuenta_llegada}"></td>
+                      <td th:text="${consignaciones.punto_atencion}"></td>
+                  </tr>
+              </th:block>
+            </table>
+
+        </div>
+
+        <h3>Tabla de transferencias</h3>
+
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID</th>
+                    <th>Tipo Operacion</th>
+                    <th>Fecha</th>
+                    <th>Monto operacion</th>
+                    <th>Cliente</th>
+                    <th>Cuenta llegada</th>
+                    <th>Punto atencion</th>
+                  </tr>
+                </thead>
+                <th:block th:each="consignaciones : ${operacionesTransferencia}">
+                  <tr>
+                      <td th:text="${consignaciones.id}"></td>
+                      <td th:text="${consignaciones.tipo_operacion}"></td>
+                      <td th:text="${consignaciones.fecha}"></td>
+                      <td th:text="${consignaciones.monto_operacion}"></td>
+                      <td th:text="${consignaciones.cliente}"></td>
+                      <td th:text="${consignaciones.cuenta_llegada}"></td>
+                      <td th:text="${consignaciones.punto_atencion}"></td>
+                  </tr>
+              </th:block>
+            </table>
+
+        </div>
+
+
+        <div>
+            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+        </div>
+        <br />
+
+    </div>
+</body>
