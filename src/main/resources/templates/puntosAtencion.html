@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>puntos de atencion</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1>Lista de Puntos de atencion</h1>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>ID oficina</th>
+                    <th>Tipo</th>
+                    <th>Ciudad</th>
+                    <th>Horario Atencion</th>
+                    <th>Direccion</th>
+
+                </tr>
+            </thead>
+            <th:block th:each="punto : ${puntosAtencion}">
+                    <tr>
+                    <td th:text="${punto.id}"></td>
+                    <td th:text="${punto.idOficina}"></td>
+                    <td th:text="${punto.tipo}"></td>
+                    <td th:text="${punto.ciudad}"></td>
+                    <td th:text="${punto.horario_atencion}"></td>
+                    <td th:text="${punto.direccion}"></td>
+                    <td>
+                        <a th:href="@{puntosAtencion/{id}/delete(id=${punto.id})}"
+                            onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
+                    </td>
+                    </tr>
+                </th:block>
+            </th:block>
+
+
+        </table>
+
+        </div>
+
+        <div>
+            <a th:href='@{puntosAtencion/new}' class="btn btn-primary">Añadir Punto de Atencion</a>
+            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+          </div>
+        <br />
+
+    </div>
+</body>
+
+</html>

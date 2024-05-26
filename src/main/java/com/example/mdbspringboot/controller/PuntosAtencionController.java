@@ -1,5 +1,7 @@
 package com.example.mdbspringboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,33 +10,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.mdbspringboot.modelo.Oficina;
 import com.example.mdbspringboot.modelo.PuntoAtencion;
+import com.example.mdbspringboot.repositorios.OficinaRepository;
 import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
 
 @Controller
 public class PuntosAtencionController {
-  // @Autowired
-  // private PuntoAtencionRepository puntoAtencionRepository;
+   @Autowired
+   private PuntoAtencionRepository puntoAtencionRepository;
 
-  // @GetMapping("/puntosAtencion")
-  // public String puntosAtencion(Model model) {
-  //   model.addAttribute("puntosAtencion", puntoAtencionRepository.darPuntosAtencion());
-  //   return "puntosAtencion";
-  // }
+   @Autowired
+   private OficinaRepository oficinaRepository;
 
-  // @GetMapping("/puntosAtencion/new")
-  // public String puntosAtencionForm(Model model) {
-  //   model.addAttribute("puntoAtencion", new PuntoAtencion());
-  //   return "puntosAtencionNew";
-  // }
 
-  // @PostMapping("/puntosAtencion/new/save")
-  // public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
-  //   puntoAtencionRepository.insertarPuntoAtencion(puntoAtencion.getTipo(),
-  //       puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
-  //       puntoAtencion.getOficina());
-  //   return "redirect:/puntosAtencion";
-  // }
+   @GetMapping("/puntosAtencion")
+   public String puntosAtencion(Model model) {
+    model.addAttribute("puntosAtencion", puntoAtencionRepository.findAll());
+     return "puntosAtencion";
+   }
+
+   @GetMapping("/puntosAtencion/new")
+   public String puntosAtencionForm(Model model) {
+     model.addAttribute("puntoAtencion", new PuntoAtencion());
+     return "puntosAtencionNew";
+   }
+
+  @PostMapping("/puntosAtencion/new/save")
+  public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
+
+    String idOficina=puntoAtencion.getIdOficina();
+    int idOficina2;
+    idOficina2 = Integer.parseInt(idOficina);
+    int idPuntoAtencion=puntoAtencion.getId();
+    puntoAtencionRepository.save(puntoAtencion);
+
+    List<Oficina> oficinas= oficinaRepository.buscarTodas();
+    for(Oficina oficina: oficinas){
+      if (oficina.getId()==idOficina2){
+        List<Integer> puntos= oficina.getPuntos_atencion();
+        puntos.add(idPuntoAtencion);
+        oficina.setPuntos_atencion(puntos);
+      }
+    }
+    oficinaRepository.saveAll(oficinas);
+    return "redirect:/puntosAtencion";
+  }
+
+
 
   // @GetMapping("/puntosAtencion/{id}/edit")
   // public String puntosAtencionEditForm(@PathVariable("id") int id, Model model) {
@@ -56,18 +79,10 @@ public class PuntosAtencionController {
   //   return "redirect:/puntosAtencion";
   // }
 
-  // @GetMapping("/puntosAtencion/{id}/delete")
-  // public String puntosAtencionBorrar(@PathVariable("id") long id) {
-  //   Integer operacionesCuentas = puntoAtencionRepository.verificarOperacionesCuentas(id);
-  //   Integer operacionesPrestamos= puntoAtencionRepository.verificarOperacionesPrestamos(id);
-  //   System.out.println("id"+id);
-  //   System.out.println(operacionesCuentas);
-  //   System.out.println(operacionesPrestamos);
-  //   if (operacionesCuentas >=1 || operacionesPrestamos >=1) {
-  //     return "noBorrarPuntoAtencion";
-  //   }else{
-  //     puntoAtencionRepository.eliminaPuntoAtencion(id);
-  //     return "redirect:/puntosAtencion";
-  //   }   
-  // }
+  @GetMapping("/puntosAtencion/{id}/delete")
+  public String puntosAtencionBorrar(@PathVariable("id") long id) {
+      puntoAtencionRepository.eliminaPuntoAtencion(id);
+      return "redirect:/puntosAtencion";
+    
+  }
 }

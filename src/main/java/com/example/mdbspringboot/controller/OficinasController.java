@@ -20,6 +20,7 @@ public class OficinasController {
   @GetMapping("/oficinas")
   public String oficinas(Model model) {
     model.addAttribute("oficinas", oficinaRepository.findAll());
+
     return "oficinas";
   }
 
