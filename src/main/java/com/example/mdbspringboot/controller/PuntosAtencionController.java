@@ -28,13 +28,13 @@ public class PuntosAtencionController {
      return "puntosAtencionNew";
    }
 
-  // @PostMapping("/puntosAtencion/new/save")
-  // public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
-  //   puntoAtencionRepository.insertarPuntoAtencion(puntoAtencion.getTipo(),
-  //       puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
-  //       puntoAtencion.getOficina());
-  //   return "redirect:/puntosAtencion";
-  // }
+  @PostMapping("/puntosAtencion/new/save")
+  public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
+    puntoAtencionRepository.insertarPuntoAtencion(puntoAtencion.getTipo(),
+        puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
+        puntoAtencion.getOficina());
+    return "redirect:/puntosAtencion";
+  }
 
   // @GetMapping("/puntosAtencion/{id}/edit")
   // public String puntosAtencionEditForm(@PathVariable("id") int id, Model model) {
