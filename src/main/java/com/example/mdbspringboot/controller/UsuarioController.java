@@ -1,5 +1,8 @@
 package com.example.mdbspringboot.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.mdbspringboot.modelo.Cuenta;
+import com.example.mdbspringboot.modelo.OperacionCuenta;
+import com.example.mdbspringboot.modelo.PuntoAtencion;
 import com.example.mdbspringboot.modelo.Usuario;
+import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
 import com.example.mdbspringboot.repositorios.UsuarioRepository;
+import com.example.mdbspringboot.repositorios.UsuarioRepository.respuestaEstadoComun;
+import com.example.mdbspringboot.repositorios.UsuarioRepository.respuestaTipoCuentaComun;
 
 
 
@@ -18,6 +27,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PuntoAtencionRepository puntoAtencionRepository;
+
     @GetMapping("/consultas")
     public String consultaDos(Model model) {
         model.addAttribute("usuarios", usuarioRepository.findAll());
@@ -25,8 +37,66 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultaUno")
-    public String consultaUno(Model model) {
-        model.addAttribute("usuarios", usuarioRepository.findAll());
+    public String consultaUno(Model model, String numero_documento,  Integer saldo_menor, Integer saldo_mayor, String tipo_cuenta) {
+        
+        Usuario usuario = usuarioRepository.encontrarUsuarioPorDocumento(numero_documento);
+        
+        model.addAttribute("usuario", usuario);
+        
+        
+        
+        List<Cuenta> cuentas = usuario.getCuentas();
+        
+
+        List<Integer> puntosAtencionId = new ArrayList<Integer>();
+
+        List<PuntoAtencion> puntosAtencion = new ArrayList<PuntoAtencion>();
+
+        if(saldo_menor != null && saldo_mayor != null)
+        {
+            List<Cuenta> cuentasFiltradas = new ArrayList<Cuenta>();
+            for (Cuenta cuenta : cuentas) {
+                if(cuenta.getSaldo() >= saldo_menor && cuenta.getSaldo() <= saldo_mayor)
+                {
+                    cuentasFiltradas.add(cuenta);
+                }
+            }
+            model.addAttribute("cuentas", cuentasFiltradas);
+        }
+
+        if( tipo_cuenta != null)
+        {
+            List<Cuenta> cuentasFiltradasTipo = new ArrayList<Cuenta>();
+            for (Cuenta cuenta : cuentas) {
+                if(cuenta.getTipo().equals(tipo_cuenta))
+                {
+                    cuentasFiltradasTipo.add(cuenta);
+                }
+            }
+            model.addAttribute("cuentasTipo", cuentasFiltradasTipo);
+        }
+
+
+        for (Cuenta cuenta : cuentas) {
+            for (OperacionCuenta operacion : cuenta.getOperaciones_cuenta()){
+                if( operacion.getPunto_atencion() != null && !puntosAtencionId.contains(operacion.getPunto_atencion()))
+                    puntosAtencionId.add(operacion.getPunto_atencion());
+            }
+            
+        }
+        List<respuestaTipoCuentaComun> tipoComun= usuarioRepository.agruparPorTipoCuenta(numero_documento);
+        model.addAttribute("tipoComun", tipoComun.get(0));
+
+        List<respuestaEstadoComun> estadoComun= usuarioRepository.agruparEstadoCuenta(numero_documento);
+        model.addAttribute("estadoComun", estadoComun.get(0));
+
+
+
+
+
+        int a=0;
+
+
         return "consultaUno";
     }
 
