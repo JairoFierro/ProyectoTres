@@ -12,6 +12,7 @@ import java.util.Date;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mdbspringboot.modelo.Usuario;
 
@@ -19,9 +20,17 @@ import com.example.mdbspringboot.modelo.Usuario;
 
 public interface OficinaRepository extends MongoRepository<Oficina, Integer> {
 
-  //@Query("{_id: ?0}")
-  //@Update("{$push:{oficinas:{_id:?1, tipo:?2, ciudad:?3, horario_atencion:?4, direccion:?5 }}}")
-  //void aniadirPuntoAtencionOficina(int oficina, int id, String tipo, String ciudad, String horario_atencion, String direccion);
+
+//Agarrar el id de la oficina, despues actualizo la oficina.
+ 
+  @Query("{_id: ?0}")
+  @Update("{$push:{puntos_atencion:{?1}}")
+  void actualizarArray(int idOficina2, int idPuntoAtencion);
+
+
+  //@Transactional
+  //@Query(value = "{ id : ?0 }", fields = "{ puntos_atencion: 1 }")
+  //void actualizarArray(int idOficina, int nuevoPuntoAtencion);
 
 
 

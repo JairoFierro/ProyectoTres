@@ -40,6 +40,15 @@ public class Oficina {
     this.gerente = gerente;
   }
 
+  // Getters y Setters para puntos_atencion
+  public List<Integer> getPuntos_atencion() {
+    return puntos_atencion;
+  }
+
+  public void setPuntos_atencion(List<Integer> puntos_atencion) {
+    this.puntos_atencion = puntos_atencion;
+  }
+
   public Integer getId() {
     return id;
   }

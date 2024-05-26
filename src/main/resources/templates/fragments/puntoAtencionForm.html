@@ -15,7 +15,9 @@
     <form>
         <label class="col-form-label">Id:</label>
         <input class="form-control" type="text" id="id" name="id" th:value="${puntoAtencion.id}" />
-
+        <label class="col-form-label">Id Oficina:</label>
+        <input class="form-control" type="text" id="idOficina" name="idOficina" required th:value="${puntoAtencion.idOficina}" />
+        
         <label class="col-form-label">Tipo:</label>
         <select class="form-control"  id="tipo" name="tipo" required>
             <option value="Perzonalizado" th:selected="${puntoAtencion.tipo eq 'Perzonalizado'}">Personalizado</option>

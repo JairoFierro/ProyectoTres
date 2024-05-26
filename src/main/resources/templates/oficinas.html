@@ -23,7 +23,6 @@
                     <th>Puntos Atencion</th>
                     <th>Gerente</th>
                     <th>Ciudad</th>
-                    <th>Puntos De atencion</th>
                 </tr>
             </thead>
             <th:block th:each="oficina : ${oficinas}">
@@ -34,10 +33,7 @@
                     <td th:text="${oficina.numero_puntos_atencion}"></td>
                     <td th:text="${oficina.gerente}"></td>
                     <td th:text="${oficina.ciudad}"></td>
-                    
-                    <td>aca van los Ids de los Puntos de atencion</td>
                     <td>
-                        <a th:href="@{oficinas/{id}/edit(id=${oficina.id})}">Editar</a>
                         <a th:href="@{oficinas/{id}/delete(id=${oficina.id})}"
                             onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
                     </td>

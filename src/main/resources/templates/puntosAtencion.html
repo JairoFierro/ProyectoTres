@@ -18,15 +18,18 @@
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
+                    <th>ID oficina</th>
                     <th>Tipo</th>
                     <th>Ciudad</th>
                     <th>Horario Atencion</th>
                     <th>Direccion</th>
+
                 </tr>
             </thead>
             <th:block th:each="punto : ${puntosAtencion}">
                     <tr>
                     <td th:text="${punto.id}"></td>
+                    <td th:text="${punto.idOficina}"></td>
                     <td th:text="${punto.tipo}"></td>
                     <td th:text="${punto.ciudad}"></td>
                     <td th:text="${punto.horario_atencion}"></td>

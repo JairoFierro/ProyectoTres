@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.mdbspringboot.modelo.PuntoAtencion;
+import com.example.mdbspringboot.repositorios.OficinaRepository;
 import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
 
 @Controller
@@ -16,6 +17,8 @@ public class PuntosAtencionController {
    @Autowired
    private PuntoAtencionRepository puntoAtencionRepository;
 
+   @Autowired
+   private OficinaRepository oficinaRepository;
 
 
    @GetMapping("/puntosAtencion")
@@ -32,6 +35,13 @@ public class PuntosAtencionController {
 
   @PostMapping("/puntosAtencion/new/save")
   public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
+
+    String idOficina=puntoAtencion.getIdOficina();
+    int idOficina2;
+    idOficina2 = Integer.parseInt(idOficina);
+    int idPuntoAtencion=puntoAtencion.getId();
+
+    oficinaRepository.actualizarArray(idOficina2,idPuntoAtencion);
     puntoAtencionRepository.save(puntoAtencion);
     return "redirect:/puntosAtencion";
   }
