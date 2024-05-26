@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Extracto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div class="text-center">
+        <h3>Tu informacion</h3>
+
+        <div class="row">
+
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>LOGIN</th>
+                    <th>NUMERO DOCUMENTO</th>
+                    <th>TIPO PERSONA</th>
+                    <th>TIPO DOCUMENTO</th>
+                    <th>NOMBRE</th>
+                    <th>NACIONALIDAD</th>
+                    <th>DIRECCION FISICA </th>
+                    <th>DIRECCION ELECTRONICA</th>
+                    <th>TELEFONO</th>
+                    <th>CODIGO POSTAL</th>
+                    <th>CIUDAD</th>
+                    <th>DEPARTAMENTO</th>
+                    <th>TIPO USUARIO</th>
+                </tr>
+            </thead>
+
+            <th:block th:each="user : ${usuario}">
+                <tr>
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.numero_documento}"></td>
+                    <td th:text="${user.tipo_persona}"></td>
+                    <td th:text="${user.tipo_documento}"></td>
+                    <td th:text="${user.nombre}"></td>
+                    <td th:text="${user.nacionalidad}"></td>
+                    <td th:text="${user.direccion_fisica}"></td>
+                    <td th:text="${user.direccion_electronica}"></td>
+                    <td th:text="${user.telefono}"></td>
+                    <td th:text="${user.codigo_postal}"></td>
+                    <td th:text="${user.ciudad}"></td>
+                    <td th:text="${user.departamento}"></td>
+                    <td th:text="${user.tipo_usuario}"></td>
+                </tr>
+            </th:block>
+        </table>
+        </div>
+
+        <h3>Cuentas del tipo que elejiste:</h3>
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>NUMERO CUENTA</th>
+                        <th>ESTADO</th>
+                        <th>SALDO</th>
+                        <th>TIPO</th>
+                        <th>ULTIMA_TRANSACCION</th>
+                        <th>GERENTE OFICINA CREADOR</th>
+                        <th>FECHA CREACION</th>
+                    </tr>
+                </thead>
+
+                <th:block th:each="cuenta : ${cuentasTipo}">
+                        <tr>
+                            <td th:text="${cuenta.numero_cuenta}"></td>
+                            <td th:text="${cuenta.estado}"></td>
+                            <td th:text="${cuenta.saldo}"></td>
+                            <td th:text="${cuenta.tipo}"></td>
+                            <td th:text="${cuenta.ultima_transaccion}"></td>
+                            <td th:text="${cuenta.gerente_oficina}"></td>
+                            <td th:text="${cuenta.fecha_creacion}"></td>
+                        </tr>
+                </th:block>
+            </table>
+
+        </div>
+
+        <div class="row" style="margin-left: 590px;">
+        <h3>Tipo de cuenta mas comun:</h3>
+        </div>
+
+        <div class="row" style="margin-left: 650px;">
+            <h5>Cantidad:</h5>
+            <h5 th:text="${tipoComun.conteo}" style="margin-right: 20px;"></h5>
+            <h5>Tipo:</h5>
+            <h5 th:text="${tipoComun.tipo}"></h5>
+        </div>
+
+
+        <h3>Estado de cuenta mas comun:</h3>
+
+        <div class="row" style="margin-left: 650px;">
+            <h5>Cantidad:</h5>
+            <h5 th:text="${estadoComun.conteo}" style="margin-right: 20px;"></h5>
+            <h5>Estado:</h5>
+            <h5 th:text="${estadoComun.estado}"></h5>
+        </div>
+
+
+        <h3>Cuentas en el rango que seleccionaste</h3>
+
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>NUMERO CUENTA</th>
+                        <th>ESTADO</th>
+                        <th>SALDO</th>
+                        <th>TIPO</th>
+                        <th>ULTIMA_TRANSACCION</th>
+                        <th>GERENTE OFICINA CREADOR</th>
+                        <th>FECHA CREACION</th>
+                    </tr>
+                </thead>
+
+                    <th:block th:each="cuenta : ${cuentas}">
+                        <tr>
+                            <td th:text="${cuenta.numero_cuenta}"></td>
+                            <td th:text="${cuenta.estado}"></td>
+                            <td th:text="${cuenta.saldo}"></td>
+                            <td th:text="${cuenta.tipo}"></td>
+                            <td th:text="${cuenta.ultima_transaccion}"></td>
+                            <td th:text="${cuenta.gerente_oficina}"></td>
+                            <td th:text="${cuenta.fecha_creacion}"></td>
+                        </tr>
+                    </th:block>
+            </table>
+
+        </div>
+
+
+        <div>
+            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+        </div>
+        <br />
+
+    </div>
+</body>
+
+</html>

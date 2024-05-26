@@ -1,5 +1,6 @@
 package com.example.mdbspringboot.repositorios;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.example.mdbspringboot.modelo.PuntoAtencion;
 
@@ -9,6 +10,9 @@ import com.example.mdbspringboot.modelo.PuntoAtencion;
 // import jakarta.transaction.Transactional;
 
 public interface PuntoAtencionRepository extends MongoRepository<PuntoAtencion, Integer>{
+
+    @Query("{'_id': ?0}")
+    PuntoAtencion encontrarPuntoAtencionPorId(int id);
 
     // @Query(value = "SELECT * FROM puntos_atencion", nativeQuery = true)
     // Collection<PuntoAtencion> darPuntosAtencion();

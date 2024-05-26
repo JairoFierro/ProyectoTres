@@ -19,6 +19,25 @@
             <label class="col-form-label">Escribe tu numero de documento:</label>
             <input class="form-control" type="text" id="numero_documento" name="numero_documento" required/> 
             </div>
+            <div class="mb-3">
+                <br>
+                <label class="col-form-label">Escribe el rango de saldo que deseas consultar(Consulta todas las cuentas):</label>
+                <label class="col-form-label">Saldo menor:</label>
+                <input class="form-control" type="number" id="saldo_menor" name="saldo_menor" /> 
+                <label class="col-form-label">Saldo mayor:</label>
+                <input class="form-control" type="number" id="saldo_mayor" name="saldo_mayor" /> 
+            </div>
+
+            <div class="mb-3">
+                <br>
+                <label class="col-form-label">Tipo de cuenta que deseas consultar:</label>
+                <select class="form-control" id="tipo_cuenta" name="tipo_cuenta">
+                <option value="Ahorros" th:selected="${tipo_cuenta eq 'Ahorros'}"> Ahorros </option>
+                <option value="Corriente" th:selected="${tipo_cuenta eq 'Corriente'}"> Corriente </option>
+                <option value="AFC" th:selected="${tipo_cuenta eq 'AFC'}"> AFC </option>
+            </div>
+
+
 
             <div class="text-center">
                 <br>
