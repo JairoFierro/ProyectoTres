@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.mdbspringboot.modelo.PuntoAtencion;
+import com.example.mdbspringboot.repositorios.OficinaRepository;
 import com.example.mdbspringboot.repositorios.PuntoAtencionRepository;
 
 @Controller
@@ -16,23 +17,28 @@ public class PuntosAtencionController {
    @Autowired
    private PuntoAtencionRepository puntoAtencionRepository;
 
+   @Autowired
+   private OficinaRepository oficinaRepository;
+
+
    @GetMapping("/puntosAtencion")
    public String puntosAtencion(Model model) {
-    model.addAttribute("puntosAtencion", puntoAtencionRepository.findAll());
-     return "puntosAtencion";
+    //model.addAttribute("puntosAtencion", puntoAtencionRepository.findAll());
+    model.addAttribute("oficinas", oficinaRepository.findAll());
+    return "puntosAtencion";
    }
 
    @GetMapping("/puntosAtencion/new")
    public String puntosAtencionForm(Model model) {
      model.addAttribute("puntoAtencion", new PuntoAtencion());
+     model.addAttribute("oficinas");
      return "puntosAtencionNew";
    }
 
   @PostMapping("/puntosAtencion/new/save")
-  public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion) {
-    puntoAtencionRepository.insertarPuntoAtencion(puntoAtencion.getTipo(),
-        puntoAtencion.getCiudad(), puntoAtencion.getHorario_atencion(), puntoAtencion.getDireccion(),
-        puntoAtencion.getOficina());
+  public String puntosAtencionSave(@ModelAttribute PuntoAtencion puntoAtencion,@ModelAttribute("oficina") int oficina ) {
+    oficinaRepository.aniadirPuntoAtencionOficina(oficina,puntoAtencion.getId(),puntoAtencion.getTipo(),puntoAtencion.getCiudad(),puntoAtencion.getHorario_atencion(),puntoAtencion.getDireccion());
+
     return "redirect:/puntosAtencion";
   }
 

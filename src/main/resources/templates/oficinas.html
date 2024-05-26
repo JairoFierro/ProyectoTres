@@ -23,7 +23,7 @@
                     <th>Puntos Atencion</th>
                     <th>Gerente</th>
                     <th>Ciudad</th>
-                    <th>Acciones</th>
+                    <th>Puntos De atencion</th>
                 </tr>
             </thead>
             <th:block th:each="oficina : ${oficinas}">
@@ -34,6 +34,8 @@
                     <td th:text="${oficina.numero_puntos_atencion}"></td>
                     <td th:text="${oficina.gerente}"></td>
                     <td th:text="${oficina.ciudad}"></td>
+
+
                     <td>
                         <a th:href="@{oficinas/{id}/edit(id=${oficina.id})}">Editar</a>
                         <a th:href="@{oficinas/{id}/delete(id=${oficina.id})}"
@@ -48,8 +50,8 @@
 
         <div>
             <a th:href='@{oficinas/new}' class="btn btn-primary">Añadir oficina</a>
-            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
-          </div>
+        <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+        </div>
         <br />
 
     </div>

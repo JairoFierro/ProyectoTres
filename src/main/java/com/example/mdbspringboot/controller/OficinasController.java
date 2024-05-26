@@ -20,6 +20,7 @@ public class OficinasController {
   @GetMapping("/oficinas")
   public String oficinas(Model model) {
     model.addAttribute("oficinas", oficinaRepository.findAll());
+
     return "oficinas";
   }
 
@@ -31,6 +32,8 @@ public class OficinasController {
 
   @PostMapping("/oficinas/new/save")
   public String oficinassSave(@ModelAttribute Oficina oficina) {
+
+    
     oficinaRepository.save(oficina);
     return "redirect:/oficinas";
   }

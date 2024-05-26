@@ -6,10 +6,26 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.mdbspringboot.modelo.Oficina;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.Update;
+
+import com.example.mdbspringboot.modelo.Usuario;
+
 
 
 public interface OficinaRepository extends MongoRepository<Oficina, Integer> {
-//   @Query(value = "SELECT * FROM oficinas", nativeQuery = true)
+
+  @Query("{_id: ?0}")
+  @Update("{$push:{oficinas:{_id:?1, tipo:?2, ciudad:?3, horario_atencion:?4, direccion:?5 }}}")
+  void aniadirPuntoAtencionOficina(int oficina, int id, String tipo, String ciudad, String horario_atencion, String direccion);
+
+
+
+  //   @Query(value = "SELECT * FROM oficinas", nativeQuery = true)
 //   Collection<Oficina> darOficinas();
 
 //   @Query(value = "SELECT * FROM oficinas WHERE id = :id", nativeQuery = true)
