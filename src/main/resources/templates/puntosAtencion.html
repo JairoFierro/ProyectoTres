@@ -32,8 +32,7 @@
                     <td th:text="${punto.horario_atencion}"></td>
                     <td th:text="${punto.direccion}"></td>
                     <td>
-                        <a th:href="@{puntosAtencion/{id}/edit(id=${puntosAtencion.id})}">Editar</a>
-                        <a th:href="@{puntosAtencion/{id}/delete(id=${puntosAtencion.id})}"
+                        <a th:href="@{puntosAtencion/{id}/delete(id=${punto.id})}"
                             onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
                     </td>
                     </tr>

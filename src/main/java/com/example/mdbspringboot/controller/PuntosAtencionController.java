@@ -58,18 +58,10 @@ public class PuntosAtencionController {
   //   return "redirect:/puntosAtencion";
   // }
 
-  // @GetMapping("/puntosAtencion/{id}/delete")
-  // public String puntosAtencionBorrar(@PathVariable("id") long id) {
-  //   Integer operacionesCuentas = puntoAtencionRepository.verificarOperacionesCuentas(id);
-  //   Integer operacionesPrestamos= puntoAtencionRepository.verificarOperacionesPrestamos(id);
-  //   System.out.println("id"+id);
-  //   System.out.println(operacionesCuentas);
-  //   System.out.println(operacionesPrestamos);
-  //   if (operacionesCuentas >=1 || operacionesPrestamos >=1) {
-  //     return "noBorrarPuntoAtencion";
-  //   }else{
-  //     puntoAtencionRepository.eliminaPuntoAtencion(id);
-  //     return "redirect:/puntosAtencion";
-  //   }   
-  // }
+  @GetMapping("/puntosAtencion/{id}/delete")
+  public String puntosAtencionBorrar(@PathVariable("id") long id) {
+      puntoAtencionRepository.eliminaPuntoAtencion(id);
+      return "redirect:/puntosAtencion";
+    
+  }
 }
