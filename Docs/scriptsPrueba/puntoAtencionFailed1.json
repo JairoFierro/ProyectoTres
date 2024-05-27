@@ -1,0 +1,11 @@
+
+db.puntos_atencion.insertOne(
+{
+  "_id": 5,
+  "tipo": "Sucursal",
+  "ciudad": "Medellin",
+  "horario_atencion": "9AM-6PM",
+  "idOficina": "3",
+  "_class": "com.example.mdbspringboot.modelo.PuntoAtencion"
+}
+  );

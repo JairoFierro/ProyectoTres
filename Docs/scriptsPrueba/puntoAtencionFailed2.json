@@ -1,0 +1,12 @@
+
+db.puntos_atencion.insertOne(
+{
+  "_id": "6",
+  "tipo": "OficinaPrincipal",
+  "ciudad": "Cartagena",
+  "horario_atencion": "8AM-5PM",
+  "direccion": "Calle 10",
+  "idOficina": "4",
+  "_class": "com.example.mdbspringboot.modelo.PuntoAtencion"
+}
+  );

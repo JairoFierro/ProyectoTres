@@ -1,0 +1,47 @@
+
+db.usuarios.insertOne(
+{
+  "_id": 5,
+  "login": "p.moreno",
+  "password": "moreno9012",
+  "numero_documento": "1067890123",
+  "tipo_persona": "Natural",
+  "tipo_documento": "CC",
+  "nombre": "Pedro Moreno",
+  "nacionalidad": "Colombiana",
+  "direccion_fisica": "Calle 70",
+  "direccion_electronica": "p.moreno@correo.com",
+  "telefono": "316 444 7890",
+  "codigo_postal": "140444",
+  "ciudad": "Barranquilla",
+  "departamento": "Atlantico",
+  "tipo_usuario": "Cliente",
+  "cuentas": [
+    {
+      "_id": 5,
+      "numero_cuenta": "5",
+      "estado": "Activa",
+      "saldo": 4000.00,
+      "tipo": "Ahorros",
+      "ultima_transaccion": {
+        "$date": "2024-05-26T05:00:00.000Z"
+      },
+      "gerente_oficina": 5,
+      "fecha_creacion": {
+        "$date": "2024-05-23T05:00:00.000Z"
+      },
+      "operaciones_cuenta": [
+        {
+          "_id": 6,
+          "tipo_operacion": "Retiro",
+          "monto_operacion": 400,
+          "cliente": 5,
+          "cuenta_llegada": "5",
+          "punto_atencion": 1
+        }
+      ]
+    }
+  ],
+  "_class": "com.example.mdbspringboot.modelo.Usuario"
+}
+  );

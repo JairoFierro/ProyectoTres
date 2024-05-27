@@ -1,0 +1,50 @@
+
+db.usuarios.insertOne(
+{
+  "_id": 4,
+  "login": "m.lopez",
+  "password": "lopez5678",
+  "numero_documento": "1056789012",
+  "tipo_persona": "Natural",
+  "tipo_documento": "CC",
+  "nombre": "Maria Lopez",
+  "nacionalidad": "Colombiana",
+  "direccion_fisica": "Calle 60",
+  "direccion_electronica": "m.lopez@correo.com",
+  "telefono": "315 555 6789",
+  "codigo_postal": "130333",
+  "ciudad": "Cartagena",
+  "departamento": "Bolivar",
+  "tipo_usuario": "Cliente",
+  "cuentas": [
+    {
+      "_id": 4,
+      "numero_cuenta": "4",
+      "estado": "Activa",
+      "saldo": "3000.00",
+      "tipo": "Ahorros",
+      "ultima_transaccion": {
+        "$date": "2024-05-26T05:00:00.000Z"
+      },
+      "gerente_oficina": 4,
+      "fecha_creacion": {
+        "$date": "2024-05-22T05:00:00.000Z"
+      },
+      "operaciones_cuenta": [
+        {
+          "_id": 5,
+          "tipo_operacion": "Deposito",
+          "fecha": {
+            "$date": "2024-05-25T05:00:00.000Z"
+          },
+          "monto_operacion": 1000,
+          "cliente": 4,
+          "cuenta_llegada": "4",
+          "punto_atencion": 1
+        }
+      ]
+    }
+  ],
+  "_class": "com.example.mdbspringboot.modelo.Usuario"
+}
+  );

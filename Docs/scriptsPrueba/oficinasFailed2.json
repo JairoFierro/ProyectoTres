@@ -1,0 +1,18 @@
+
+db.oficinas.insertOne(
+{
+  "_id": 4,
+  "nombre": "Oficina Este",
+  "direccion": "Calle Este 789",
+  "numero_puntos_atencion": "4",
+  "gerente": 104,
+  "ciudad": "Ciudad Este",
+  "puntos_atencion": [
+    4001,
+    4002,
+    4003,
+    4004
+  ],
+  "_class": "com.example.mdbspringboot.modelo.Oficina"
+}
+  );

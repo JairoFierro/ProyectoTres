@@ -1,0 +1,14 @@
+
+db.oficinas.insertOne(
+{
+  "_id": 3,
+  "nombre": "Oficina Norte",
+  "numero_puntos_atencion": 1,
+  "gerente": 103,
+  "ciudad": "Ciudad Norte",
+  "puntos_atencion": [
+    3001
+  ],
+  "_class": "com.example.mdbspringboot.modelo.Oficina"
+}
+  );

@@ -1,0 +1,49 @@
+
+db.usuarios.insertOne(
+{
+  "_id": 3,
+  "login": "j.doe",
+  "password": "xyz1234",
+  "numero_documento": "1045678901",
+  "tipo_persona": "Natural",
+  "tipo_documento": "CC",
+  "nacionalidad": "Colombiana",
+  "direccion_fisica": "Calle 50",
+  "direccion_electronica": "j.doe@correo.com",
+  "telefono": "314 123 4567",
+  "codigo_postal": "120222",
+  "ciudad": "Cali",
+  "departamento": "Valle del Cauca",
+  "tipo_usuario": "Cliente",
+  "cuentas": [
+    {
+      "_id": 3,
+      "numero_cuenta": "3",
+      "estado": "Activa",
+      "saldo": 2000.00,
+      "tipo": "Corriente",
+      "ultima_transaccion": {
+        "$date": "2024-05-26T05:00:00.000Z"
+      },
+      "gerente_oficina": 3,
+      "fecha_creacion": {
+        "$date": "2024-05-21T05:00:00.000Z"
+      },
+      "operaciones_cuenta": [
+        {
+          "_id": 4,
+          "tipo_operacion": "Retiro",
+          "fecha": {
+            "$date": "2024-05-25T05:00:00.000Z"
+          },
+          "monto_operacion": 300,
+          "cliente": 3,
+          "cuenta_llegada": "3",
+          "punto_atencion": 1
+        }
+      ]
+    }
+  ],
+  "_class": "com.example.mdbspringboot.modelo.Usuario"
+}
+  );
