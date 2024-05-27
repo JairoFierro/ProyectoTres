@@ -102,6 +102,17 @@
 
         </div>
 
+        <div class="row" style="margin-left: 590px;">
+          <h3>Saldos:</h3>
+          </div>
+  
+          <div class="row" style="margin-left: 650px;">
+              <h5>Saldo a inicio de mes:</h5>
+              <h5 th:text="${saldoInicial}" style="margin-right: 20px;"></h5>
+              <h5>Saldo a final de mes:</h5>
+              <h5 th:text="${saldoFinal}" style="margin-right: 20px;"></h5>
+          </div>
+
 
         <div>
             <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
