@@ -1,58 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>puntos de atencion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntos de Atención</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script th:src="@{/css/jquery.min.js}"></script>
     <script th:src="@{/css/bootstrap.min.js}"></script>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .thead-dark th {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="text-center">
-        <h1>Lista de Puntos de atencion</h1>
+    <div class="container text-center">
+        <h1 class="my-4">Lista de Puntos de Atención</h1>
 
-        <div class="row">
-
-        <table class="table table-hover table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>ID oficina</th>
-                    <th>Tipo</th>
-                    <th>Ciudad</th>
-                    <th>Horario Atencion</th>
-                    <th>Direccion</th>
-
-                </tr>
-            </thead>
-            <th:block th:each="punto : ${puntosAtencion}">
+        <div class="table-container">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                    <td th:text="${punto.id}"></td>
-                    <td th:text="${punto.idOficina}"></td>
-                    <td th:text="${punto.tipo}"></td>
-                    <td th:text="${punto.ciudad}"></td>
-                    <td th:text="${punto.horario_atencion}"></td>
-                    <td th:text="${punto.direccion}"></td>
-                    <td>
-                        <a th:href="@{puntosAtencion/{id}/delete(id=${punto.id})}"
-                            onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
-                    </td>
+                        <th>ID</th>
+                        <th>ID Oficina</th>
+                        <th>Tipo</th>
+                        <th>Ciudad</th>
+                        <th>Horario de Atención</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
                     </tr>
-                </th:block>
-            </th:block>
-
-
-        </table>
-
+                </thead>
+                <tbody>
+                    <th:block th:each="punto : ${puntosAtencion}">
+                        <tr>
+                            <td th:text="${punto.id}"></td>
+                            <td th:text="${punto.idOficina}"></td>
+                            <td th:text="${punto.tipo}"></td>
+                            <td th:text="${punto.ciudad}"></td>
+                            <td th:text="${punto.horario_atencion}"></td>
+                            <td th:text="${punto.direccion}"></td>
+                            <td>
+                                <a th:href="@{puntosAtencion/{id}/delete(id=${punto.id})}" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de borrar este punto de atención?')">Borrar</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
         </div>
 
-        <div>
-            <a th:href='@{puntosAtencion/new}' class="btn btn-primary">Añadir Punto de Atencion</a>
-            <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
-          </div>
-        <br />
-
+        <div class="btn-container">
+            <a th:href="@{puntosAtencion/new}" class="btn btn-primary">Añadir Punto de Atención</a>
+            <a th:href="@{/}" class="btn btn-secondary">Volver Atrás</a>
+        </div>
     </div>
 </body>
 

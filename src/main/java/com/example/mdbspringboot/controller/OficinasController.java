@@ -1,9 +1,5 @@
 package com.example.mdbspringboot.controller;
 
-import java.util.List;
-
-import javax.swing.text.html.Option;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

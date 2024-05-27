@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.mdbspringboot.modelo.Cuenta;
 import com.example.mdbspringboot.modelo.Usuario;
-import com.example.mdbspringboot.repositorios.CuentaRepository;
 import com.example.mdbspringboot.repositorios.UsuarioRepository;
 
 
@@ -22,8 +21,6 @@ import com.example.mdbspringboot.repositorios.UsuarioRepository;
 
 @Controller
 public class CuentasController {
-  @Autowired
-  private CuentaRepository cuentaRepository;
 
   @Autowired
   private UsuarioRepository usuarioRepository;

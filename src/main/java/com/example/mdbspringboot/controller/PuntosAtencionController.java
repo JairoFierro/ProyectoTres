@@ -49,8 +49,14 @@ public class PuntosAtencionController {
     for(Oficina oficina: oficinas){
       if (oficina.getId()==idOficina2){
         List<Integer> puntos= oficina.getPuntos_atencion();
-        puntos.add(idPuntoAtencion);
-        oficina.setPuntos_atencion(puntos);
+        if(puntos!=null){
+          puntos.add(idPuntoAtencion);
+          oficina.setPuntos_atencion(puntos);
+        }
+        else{
+          return "noPuede";
+        }
+
       }
     }
     oficinaRepository.saveAll(oficinas);

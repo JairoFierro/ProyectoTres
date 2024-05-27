@@ -6,44 +6,60 @@
     <title>Banco de los Andes</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Aptos Black', sans-serif;
+        }
+        .header {
+            background-color: rgb(100, 133, 6);
+            font-size: 40px;
+            color: white;
+            padding: 20px;
+        }
+        .subheader {
+            margin: 20px 0;
+            font-size: 30px;
+        }
+        .btn-custom {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container-flui">
-        <div class="row" style="background-color:rgb(100,133,6); font-size: 40px;" >
-            <div class="1-col" style="margin-left: 20px; font-size: 38px; font-family: 'Aptos Black';">Banco de los Andes</div>
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col">
+                Banco de los Andes
+            </div>
+        </div>
+
+        <div class="row subheader">
+            <div class="col">
+                Requerimientos funcionales
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <a th:href="@{usuarios/new}" class="btn btn-primary btn-block btn-custom">RF1-CREAR USUARIO</a>
+                <a th:href="@{/oficinas}" class="btn btn-primary btn-block btn-custom">RF2-CREAR OFICINA</a>
+                <a th:href="@{puntosAtencion}" class="btn btn-primary btn-block btn-custom">RF3-CREAR Y BORRAR PUNTO DE ATENCIÓN</a>
+                <a th:href="@{/cuentas}" class="btn btn-primary btn-block btn-custom">RF4 y RF5-CREAR CUENTA, CAMBIAR ESTADO DE CUENTA A CERRADA O DESACTIVADA</a>
+                <a th:href="@{/operacionesCuentas}" class="btn btn-primary btn-block btn-custom">RF6-REGISTRAR OPERACIÓN SOBRE CUENTA</a>
+            </div>
+        </div>
+
+        <div class="row subheader">
+            <div class="col">
+                Requerimientos funcionales de consulta
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <a th:href="@{/consultas}" class="btn btn-primary btn-block btn-custom">RFC1-RFC2</a>
+            </div>
+        </div>
     </div>
-
-      <div class="row" style="margin-left: 140px; font-size: 30px; font-family: 'Aptos Black';"><br>Requerimientos funcionales<br><br></div>
-      
-      <div class="row">
-          <div class="1-col" style="margin-left: 150px;"> <a th:href="@{usuarios/new}" class="btn btn-primary"> RF1-CREAR USUARIO </a> <br> <br> </div>
-      </div>
-
-      <div class="row">
-          <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/oficinas}" class="btn btn-primary"> RF2-CREAR OFICINA </a> <br> <br></div>
-      </div>
-
-      <div class="row">
-        <div class="1-col" style="margin-left: 150px;"> <a th:href="@{puntosAtencion}" class="btn btn-primary"> RF3-CREAR Y BORRAR PUNTO DE ATENCIÓN </a> <br> <br> </div>
-    </div>
-
-    <div class="row">
-        <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/cuentas}" class="btn btn-primary"> RF4 y RF5-CREAR CUENTA, CAMBIAR ESTADO DE CUENTA A CERRADA O DESACTIVADA </a> <br> <br></div>
-    </div>
-
-
-    <div class="row">
-      <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/operacionesCuentas}" class="btn btn-primary"> RF6-REGISTRAR OPERACIÓN SOBRE CUENTA</a> <br> <br></div>
-    </div>
-
-    <div class="row" style="margin-left: 140px; font-size: 30px; font-family: 'Aptos Black';"><br>Requerimientos funcionales de consulta<br><br></div>
-
-    <div class="row">
-      <div class="1-col" style="margin-left: 150px;"> <a th:href="@{/consultas}" class="btn btn-primary"> RFC1-RFC2 </a> <br> <br></div>
-    </div>
-
-
-  </div>
-    
 </body>
 </html>

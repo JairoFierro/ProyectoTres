@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>oficinas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficinas</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
-    <script th:src="@{/css/jquery.min.js}"></script>
-    <script th:src="@{/css/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        .btn-custom {
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="text-center">
-        <h1>Lista de oficinas</h1>
-
-        <div class="row">
-
-        <table class="table table-hover table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Puntos Atencion</th>
-                    <th>Gerente</th>
-                    <th>Ciudad</th>
-                </tr>
-            </thead>
-            <th:block th:each="oficina : ${oficinas}">
-                <tr>
-                    <td th:text="${oficina.id}"></td>
-                    <td th:text="${oficina.nombre}"></td>
-                    <td th:text="${oficina.direccion}"></td>
-                    <td th:text="${oficina.numero_puntos_atencion}"></td>
-                    <td th:text="${oficina.gerente}"></td>
-                    <td th:text="${oficina.ciudad}"></td>
-                    <td>
-                        <a th:href="@{oficinas/{id}/delete(id=${oficina.id})}"
-                            onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
-                    </td>
-                </tr>
-            </th:block>
-
-        </table>
-
+    <div class="container">
+        <div class="text-center">
+            <h1>Lista de Oficinas</h1>
         </div>
 
-        <div>
-            <a th:href='@{oficinas/new}' class="btn btn-primary">Añadir oficina</a>
-        <a th:href='@{/}' class="btn btn-primary">Volver Atrás</a>
+        <div class="row table-container">
+            <div class="col-12">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Puntos Atención</th>
+                            <th>Gerente</th>
+                            <th>Ciudad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="oficina : ${oficinas}">
+                            <tr>
+                                <td th:text="${oficina.id}"></td>
+                                <td th:text="${oficina.nombre}"></td>
+                                <td th:text="${oficina.direccion}"></td>
+                                <td th:text="${oficina.numero_puntos_atencion}"></td>
+                                <td th:text="${oficina.gerente}"></td>
+                                <td th:text="${oficina.ciudad}"></td>
+                                <td>
+                                    <a th:href="@{oficinas/{id}/delete(id=${oficina.id})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de borrar esta oficina?')">Borrar</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <br />
 
+        <div class="text-center">
+            <a th:href="@{oficinas/new}" class="btn btn-primary btn-custom">Añadir Oficina</a>
+            <a th:href="@{/}" class="btn btn-secondary btn-custom">Volver Atrás</a>
+        </div>
     </div>
 </body>
 
