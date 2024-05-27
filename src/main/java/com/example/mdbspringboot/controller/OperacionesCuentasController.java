@@ -94,7 +94,7 @@ public class OperacionesCuentasController {
       if(u.getCuentas() != null){
     for (Cuenta c : u.getCuentas()) { 
       if (c.getNumero_cuenta().equals(cuentaSalida)) {
-        if(c.getEstado().equals("Activa") && c.getSaldo()>=operacionCuenta.getMonto_operacion() ){ 
+        if(c.getEstado().equals("Activa") && ( (c.getSaldo()>=operacionCuenta.getMonto_operacion() && operacionCuenta.getTipo_operacion().equals("Retiro")) || (c.getSaldo()>=operacionCuenta.getMonto_operacion() && operacionCuenta.getTipo_operacion().equals("Transferencia")) || operacionCuenta.getTipo_operacion().equals("Consignacion") )  ){ 
           cuenta_salida = c;
           cuenta_salida_index=u.getCuentas().indexOf(c);
           usuario_llegada_index=usuarios.indexOf(u);
