@@ -111,9 +111,17 @@ public class UsuarioController {
         String fecha1 = "2024-" + numMes + "-01";
         String fecha2 = "2024-" + numMes + "-30"; 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-    
+        Double saldoRestar;
+        saldoRestar=0.0;
+        Double saldoRestar2;
+        saldoRestar2=0.0;
         Date fechaInicial;
         Date fechaFinal;
+        Float saldoInicial;
+        Float saldoFinal;
+        saldoInicial=0.0f;
+        saldoFinal=0.0f;
+
 
         try {
             fechaInicial = formato.parse(fecha1);
@@ -137,9 +145,6 @@ public class UsuarioController {
                     for (OperacionCuenta operacionCuenta : operacionesCuenta) {
                         Date fechaOperacion = operacionCuenta.getFecha();
                         if (fechaOperacion.compareTo(fechaInicial) >= 0 && fechaOperacion.compareTo(fechaFinal) <= 0) {
-
-
-                            
                             switch (operacionCuenta.getTipo_operacion()) {
                                 case "Consignacion":
                                     operacionesConsignacion.add(operacionCuenta);
@@ -152,16 +157,69 @@ public class UsuarioController {
                                     break;
                             }
                         }
+                        //EMPIEZO A BUSCAR EL SALDO PARA LA OPERACION INICIAL
+                        while (fechaInicial.getTime() <= fechaOperacion.getTime() ){
+                            switch (operacionCuenta.getTipo_operacion()) {
+                                case "Consignacion":
+                                    saldoRestar+=operacionCuenta.getMonto_operacion();
+                                    break;
+                                case "Retiro":
+                                    saldoRestar-=operacionCuenta.getMonto_operacion();
+                                    break;
+                                case "Transferencia":
+                                    if(operacionCuenta.getCuenta_llegada().equals(numCuenta2)){
+                                        //Si la cuenta de llegada es igual a la cuenta en la que estoy le sumo
+                                        saldoRestar+=operacionCuenta.getMonto_operacion();
+                                    }if (!operacionCuenta.getCuenta_llegada().equals(numCuenta2)) {
+                                        saldoRestar-=operacionCuenta.getMonto_operacion();
+                                    }
+                                    break;
+                            }
+                            fechaInicial.setTime(fechaInicial.getTime() + (24 * 60 * 60 * 1000)); // Suma 1 día en milisegundos
+
+                        }
+                        //EMPIEZO A BUSCAR EL SALDO PARA LA OPERACION FINAL
+                        while (fechaFinal.getTime() <= fechaOperacion.getTime() ){
+                            switch (operacionCuenta.getTipo_operacion()) {
+                                case "Consignacion":
+                                    saldoRestar2+=operacionCuenta.getMonto_operacion();
+                                    break;
+                                case "Retiro":
+                                    saldoRestar2-=operacionCuenta.getMonto_operacion();
+                                    break;
+                                case "Transferencia":
+                                    if(operacionCuenta.getCuenta_llegada().equals(numCuenta2)){
+                                        //Si la cuenta de llegada es igual a la cuenta en la que estoy le sumo
+                                        saldoRestar2+=operacionCuenta.getMonto_operacion();
+                                    }if (!operacionCuenta.getCuenta_llegada().equals(numCuenta2)) {
+                                        saldoRestar2-=operacionCuenta.getMonto_operacion();
+                                    }
+                                    break;
+                            }
+                            fechaFinal.setTime(fechaInicial.getTime() + (24 * 60 * 60 * 1000)); // Suma 1 día en milisegundos
+                        }
+
+
+                        
                     }
+                    //Hacer resta
+
+                    saldoInicial=(float) (cuenta.getSaldo()-saldoRestar);
+                    saldoFinal=(float) (cuenta.getSaldo()-saldoRestar2);
+
+                    model.addAttribute("saldoInicial", saldoInicial);
+                    model.addAttribute("saldoFinal", saldoInicial);
+            
+                    model.addAttribute("operacionesConsignacion", operacionesConsignacion);
+                    model.addAttribute("operacionesRetiro", operacionesRetiro);
+                    model.addAttribute("operacionesTransferencia", operacionesTransferencia);
+                
+                    return "consultaDos"; // Vista donde se mostrarán los resultados
                 }
             }
         }
-    
-        model.addAttribute("operacionesConsignacion", operacionesConsignacion);
-        model.addAttribute("operacionesRetiro", operacionesRetiro);
-        model.addAttribute("operacionesTransferencia", operacionesTransferencia);
-    
         return "consultaDos"; // Vista donde se mostrarán los resultados
+
     }
 
 
