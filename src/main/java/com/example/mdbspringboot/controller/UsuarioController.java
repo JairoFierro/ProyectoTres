@@ -204,11 +204,11 @@ public class UsuarioController {
                     }
                     //Hacer resta
 
-                    saldoInicial=(float) (cuenta.getSaldo()-saldoRestar);
-                    saldoFinal=(float) (cuenta.getSaldo()-saldoRestar2);
+                    saldoInicial = Math.abs((float) (cuenta.getSaldo() - saldoRestar));
+                    saldoFinal = Math.abs((float) (cuenta.getSaldo() - saldoRestar2));
 
                     model.addAttribute("saldoInicial", saldoInicial);
-                    model.addAttribute("saldoFinal", saldoInicial);
+                    model.addAttribute("saldoFinal", saldoFinal);
             
                     model.addAttribute("operacionesConsignacion", operacionesConsignacion);
                     model.addAttribute("operacionesRetiro", operacionesRetiro);
